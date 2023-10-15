@@ -180,6 +180,8 @@ const parsePropsFuncs: Required<{[key in keyof xarrowPropsType]: Function}> = {
   animateDrawing: noParse,
   zIndex: parseNum,
   passProps: noParse,
+  className: null, // add this line
+  onClick: null, // add this line
   arrowBodyProps: noParseWithUpdatePos,
   arrowHeadProps: noParseWithUpdatePos,
   arrowTailProps: noParseWithUpdatePos,
@@ -247,6 +249,8 @@ const defaultProps: Required<xarrowPropsType> = {
   divContainerStyle: {},
   SVGcanvasStyle: {},
   _extendSVGcanvas: 0,
+  className: null, // add this line
+  onClick: null, // add this line
   _debug: false,
   _cpx1Offset: 0,
   _cpy1Offset: 0,
@@ -292,6 +296,8 @@ type parsedXarrowProps = {
   divContainerProps: React.HTMLProps<HTMLDivElement>;
   SVGcanvasStyle: React.CSSProperties;
   divContainerStyle: React.CSSProperties;
+  className?: string;
+  onClick?: (ref: React.RefObject<SVGPathElement>) => void;
   _extendSVGcanvas: number;
   _debug: boolean;
   _cpx1Offset: number;
@@ -302,6 +308,8 @@ type parsedXarrowProps = {
 
 let initialParsedProps = {} as parsedXarrowProps;
 initialParsedProps = parseGivenProps(defaultProps, initialParsedProps);
+
+console.log('initialParsedProps', initialParsedProps);
 
 const initialValVars = {
   startPos: {x: 0, y: 0, right: 0, bottom: 0} as dimensionType,
@@ -373,7 +381,9 @@ const useXarrowProps = (userProps: xarrowPropsType) => {
     setValVars({...valVars});
     // console.log('start update pos', startPos);
   }, [startPos]);
+
   const endPos = getElemPos(propsRefs.end);
+
   useDeepCompareEffect(() => {
     valVars.endPos = endPos;
     shouldUpdatePosition.current = true;

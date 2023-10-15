@@ -3,7 +3,7 @@
 </h1>
 
 <p align="center">
-    <img src="banner.png" alt="Arrow Join Banner" width="150" height="150" style="border-radius: 5px;">
+    <img src="banner.jpg" alt="Arrow Join Banner" width="150" height="150" style="border-radius: 5px;">
 </p>
 <h1 align="center">A React Arrow Join Compoenet</h1>
 

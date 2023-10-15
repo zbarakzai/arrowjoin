@@ -1,5 +1,5 @@
-import React, { ReactSVG } from 'react';
-import { cAnchorEdge, cArrowShapes, cPaths, cSvgElems } from './constants';
+import React, {ReactSVG} from 'react';
+import {cAnchorEdge, cArrowShapes, cPaths, cSvgElems} from './constants';
 
 export type xarrowPropsType = {
   start: refType;
@@ -40,6 +40,8 @@ export type xarrowPropsType = {
   divContainerProps?: React.HTMLProps<HTMLDivElement>;
   SVGcanvasStyle?: React.CSSProperties;
   divContainerStyle?: React.CSSProperties;
+  className?: string;
+  onClick?: (ref: React.RefObject<SVGPathElement>) => void;
   _extendSVGcanvas?: number;
   _debug?: boolean;
   _cpx1Offset?: number;
@@ -48,14 +50,14 @@ export type xarrowPropsType = {
   _cpy2Offset?: number;
 };
 
-export type pathType = typeof cPaths[number];
+export type pathType = (typeof cPaths)[number];
 export type _anchorType = anchorNamedType | anchorCustomPositionType;
 export type anchorType = _anchorType | _anchorType[];
-export type anchorNamedType = typeof cAnchorEdge[number];
+export type anchorNamedType = (typeof cAnchorEdge)[number];
 
 export type anchorCustomPositionType = {
   position: anchorNamedType;
-  offset: { x?: number; y?: number };
+  offset: {x?: number; y?: number};
 };
 export type refType = React.MutableRefObject<any> | string;
 export type labelsType = {
@@ -70,6 +72,6 @@ export type svgCustomEdgeType = {
   offsetForward?: number;
 };
 
-export type svgEdgeShapeType = typeof cArrowShapes[number];
+export type svgEdgeShapeType = (typeof cArrowShapes)[number];
 export type svgEdgeType = svgEdgeShapeType | svgCustomEdgeType;
-export type svgElemType = typeof cSvgElems[number];
+export type svgElemType = (typeof cSvgElems)[number];

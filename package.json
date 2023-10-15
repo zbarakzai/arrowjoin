@@ -1,6 +1,6 @@
 {
   "name": "arrowjoin",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "ArrowJoin is a creative and functional React library that effortlessly connects two React components with a sleek arrow.",
   "scripts": {
     "build": "run-s clean build:types build:js",
@@ -59,7 +59,8 @@
     "@testing-library/react": "^14.0.0",
     "@tsconfig/strictest": "^2.0.1",
     "@types/lodash": "^4.14.199",
-    "@types/react": "16.8",
+    "@types/react": "^18.2.15",
+    "@types/react-dom": "^18.2.7",
     "@types/testing-library__jest-dom": "^5.14.9",
     "@typescript-eslint/eslint-plugin": "^6.7.5",
     "@typescript-eslint/parser": "^6.7.5",
@@ -82,8 +83,14 @@
     "vite-tsconfig-paths": "^4.2.0",
     "vitest": "^0.33.0"
   },
+  "dependencies": {
+    "@types/prop-types": "^15.7.8",
+    "lodash": "^4.17.21",
+    "prop-types": "^15.8.1"
+  },
   "peerDependencies": {
-    "react": ">=16.8.0"
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
   "engines": {
     "node": "^16.0.0"
@@ -93,10 +100,5 @@
   "files": [
     "dist/"
   ],
-  "types": "dist/ts/src/index.d.ts",
-  "dependencies": {
-    "@types/prop-types": "^15.7.8",
-    "lodash": "^4.17.21",
-    "prop-types": "^15.8.1"
-  }
+  "types": "dist/ts/src/index.d.ts"
 }

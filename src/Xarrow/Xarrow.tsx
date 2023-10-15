@@ -12,8 +12,6 @@ import XarrowPropTypes from './propTypes';
 import {getPosition} from './utils/GetPosition';
 
 const Xarrow: React.FC<xarrowPropsType> = (props: xarrowPropsType) => {
-  // log('xarrow update');
-
   const mainRef = useRef({
     svgRef: useRef<SVGSVGElement>(null),
     lineRef: useRef<SVGPathElement>(null),
@@ -23,6 +21,7 @@ const Xarrow: React.FC<xarrowPropsType> = (props: xarrowPropsType) => {
     lineDashAnimRef: useRef<SVGElement>(null),
     headOpacityAnimRef: useRef<SVGElement>(null),
   });
+
   const {
     svgRef,
     lineRef,
@@ -34,6 +33,7 @@ const Xarrow: React.FC<xarrowPropsType> = (props: xarrowPropsType) => {
   useContext(XarrowContext);
   // @ts-ignore
   const xProps = useXarrowProps(props, mainRef.current);
+
   const [propsRefs] = xProps;
 
   let {
@@ -228,29 +228,42 @@ const Xarrow: React.FC<xarrowPropsType> = (props: xarrowPropsType) => {
             ref={svgRef}
             width={st.cw}
             height={st.ch}
+            onClick={() => {
+              if (props.onClick) {
+                props.onClick(lineRef);
+              }
+            }}
             style={{
               position: 'absolute',
+              cursor: 'pointer',
               left: st.cx0,
               top: st.cy0,
               pointerEvents: 'none',
               border: _debug ? '1px dashed yellow' : null,
+
               ...SVGcanvasStyle,
             }}
             overflow="auto"
             {...SVGcanvasProps}
           >
-            {/* body of the arrow */}
+            {/* TODO: body of the arrow */}
             <path
               ref={lineRef}
               d={st.arrowPath}
               stroke={lineColor}
               strokeDasharray={dashArray}
+              className={props.className}
               // strokeDasharray={'0 0'}
               strokeWidth={strokeWidth}
               fill="transparent"
               pointerEvents="visibleStroke"
               {...(passProps as any)}
               {...arrowBodyProps}
+              onClick={() => {
+                if (props.onClick) {
+                  props.onClick(lineRef);
+                }
+              }}
             >
               <>
                 {drawAnimEnded ? (
